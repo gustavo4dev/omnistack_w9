@@ -1,0 +1,25 @@
+const express = require('express');
+
+const app = express();
+
+//para o app entender json é preciso declarar a seguinte informação do express
+app.use(express.json());
+
+app.get('/users/', (req,res) => {
+    //req.query = Acessar query params para filtros get
+    return res.json({id : req.query.id})
+});
+
+
+app.put('/users/:id', (req,res) => {
+    //req.params = acessar route params, paramentros com /:param para editar ou deletar
+    return res.json({id : req.params.id})
+});
+
+
+app.post('/users', (req,res)=>{
+    //req.body = Acessar o corpo da requisição, nos casos de envio via post
+    return res.json(req.body);
+});
+
+app.listen(3333);
